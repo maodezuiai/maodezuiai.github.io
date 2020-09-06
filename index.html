@@ -271,7 +271,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-05 01:11:51" itemprop="dateModified" datetime="2020-09-05T01:11:51+08:00">2020-09-05</time>
+                <time title="修改时间：2020-09-07 01:49:11" itemprop="dateModified" datetime="2020-09-07T01:49:11+08:00">2020-09-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,7 +298,6 @@
 <!-- <img src="图片名称" width="10%"> -->
 
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="材质"><a href="#材质" class="headerlink" title="材质"></a>材质</h3><!-- ![注意事项](2020-09-05-00-07-07.png) -->
-
 <p><img src="http://ww1.sinaimg.cn/large/853158adgy1gif2ivnop4j20c40643yq.jpg" alt="2020-09-05-00-07-07.png"></p>
 <h3 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h3><!-- ![](2020-09-05-00-39-03.png) -->
 <p><img src="http://ww1.sinaimg.cn/large/853158adgy1gif3hihjz2j20lz05cmxa.jpg" alt="2020-09-05-00-39-03.png"></p>
@@ -306,13 +305,77 @@
 <li>Standard surface Shader：包含标准准光照模型的表面着色器模板（基于物理的）</li>
 <li>Unlit Shader：产生一个不包含光照（但包含雾气的）的基本的顶点/片源着色器</li>
 <li>Image Effect Shader：提供了后期屏幕后期处理效果的模板</li>
-<li>Compute Shader：利用GPU的并行性进行与常规渲染流水线无关的计算</li>
-<li></li>
+<li>Compute Shader：利用GPU的并行性进行与常规渲染流水线无关的</li>
 </ol>
-<blockquote>
+<h2 id="Unity-Shader的结构"><a href="#Unity-Shader的结构" class="headerlink" title="Unity Shader的结构"></a>Unity Shader的结构</h2><h3 id="Shader的名称和位置"><a href="#Shader的名称和位置" class="headerlink" title="Shader的名称和位置"></a>Shader的名称和位置</h3><blockquote>
 <p>Shader “Custom/MyShader”{       }</p>
 </blockquote>
-<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2>
+<!-- ![](2020-09-07-00-35-13.png) -->
+<p><img src="http://ww1.sinaimg.cn/large/853158adgy1gihelygy45j20cm0ae0ta.jpg" alt="2020-09-07-00-35-13.png"></p>
+<h3 id="连接材质和Shader"><a href="#连接材质和Shader" class="headerlink" title="连接材质和Shader"></a>连接材质和Shader</h3><p>Properties语义块</p>
+<blockquote>
+<p>properties {<br>  Name(“display name”,PropertyType) = DefaultValue<br>  Name(“display name”,PropertyType) = DefaultValue<br>  //更多属性<br>}</p>
+</blockquote>
+<ul>
+<li>Name          属性名</li>
+<li>display name  材质面板名称</li>
+<li>PropertyType  属性类型（见表）</li>
+<li>DefaultValue  默认属性值<!-- ![](2020-09-07-00-50-19.png) -->
+<img src="http://ww1.sinaimg.cn/large/853158adgy1gihey53cj6j20j106w419.jpg" alt="2020-09-07-00-50-19.png"></li>
+<li>Int Float Range   值是单独数字</li>
+<li>Color Vector      （0，0，0，0）</li>
+<li>2D Cube 3D        “纹理名称”{} ^[纹理名称可为空]<blockquote>
+<p>Properties支持重载，其目的仅仅是让属性出现在材质面板中</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="SubShader语块（重要）"><a href="#SubShader语块（重要）" class="headerlink" title="SubShader语块（重要）"></a>SubShader语块（重要）</h3><blockquote>
+<p>SubShader {<br>&ensp;&ensp;&ensp;&ensp;//可选的<br>&ensp;&ensp;&ensp;&ensp;[Tags]</p>
+<p>&ensp;&ensp;&ensp;&ensp;//可选的<br>&ensp;&ensp;&ensp;&ensp;[RenderSetup]</p>
+<p>&ensp;&ensp;&ensp;&ensp;Pass{<br>&ensp;&ensp;&ensp;&ensp;}<br>&ensp;&ensp;&ensp;&ensp;// Other Passes<br>}</p>
+</blockquote>
+<ul>
+<li>Tags和RenderSetup也可以在pass中声明，但是只有Tags的设置不同</li>
+<li>如果在Subshader中声明，会影响后面全部的Passes</li>
+<li>Pass越多性能越差</li>
+</ul>
+<h4 id="RenderSetup"><a href="#RenderSetup" class="headerlink" title="RenderSetup"></a>RenderSetup</h4><p>如果不行影响所有pass（如分别渲染正反面），可在有需求的pass中单独声明</p>
+<!-- ![](2020-09-07-01-29-26.png) -->
+<p><img src="http://ww1.sinaimg.cn/large/853158adgy1gihg2w7zm1j20j7052ac0.jpg" alt="2020-09-07-01-29-26.png"></p>
+<h4 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h4><p>Tags 是一个键值对</p>
+<blockquote>
+<p>Tags{“Tagname” = “Valuel” “TagName2” = “Value2”}</p>
+</blockquote>
+<!-- > ![](2020-09-07-01-35-03.png) -->
+<p><img src="http://ww1.sinaimg.cn/large/853158adgy1gihg8mhfw7j20jb0cc7ae.jpg" alt="2020-09-07-01-35-03.png"></p>
+<blockquote>
+<p>图中的只能用于SubShader中</p>
+</blockquote>
+<h4 id="Pass语义块"><a href="#Pass语义块" class="headerlink" title="Pass语义块"></a>Pass语义块</h4><blockquote>
+<p>Pass{<br>&ensp;&ensp;&ensp;&ensp;[Name]<br>&ensp;&ensp;&ensp;&ensp;[Tags]<br>&ensp;&ensp;&ensp;&ensp;[RenderSetup]<br>&ensp;&ensp;&ensp;&ensp;//Other code<br>}</p>
+</blockquote>
+<ol>
+<li>在Pass中定义Pass名称<blockquote>
+<p>Name&ensp;”MyPassName”（必须为全部大写）</p>
+</blockquote>
+</li>
+<li>通过ShaderLab的UsePass使用其它UnityShader的Pass <blockquote>
+<p>UsePass&ensp;”MyShader/MYPASSNAME”</p>
+</blockquote>
+</li>
+</ol>
+<p>通过上述方式可以复用其它Passes，降低能耗</p>
+<!-- ![](2020-09-07-01-45-15.png) -->
+<p><img src="http://ww1.sinaimg.cn/large/853158adgy1gihgj8jla5j20ih045abq.jpg" alt="2020-09-07-01-45-15.png"></p>
+<blockquote>
+<p>Pass中的标签类型</p>
+</blockquote>
+<p>除这些外还有：</p>
+<ul>
+<li>UsePass:复用其它Shader的Pass</li>
+<li>GrabPass：抓取屏幕存储在一张纹理中</li>
+</ul>
+<h4 id="Fallback"><a href="#Fallback" class="headerlink" title="Fallback"></a>Fallback</h4>
       
     </div>
 
