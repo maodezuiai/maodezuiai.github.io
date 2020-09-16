@@ -58,7 +58,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/853158adgy1gisxg4zt9ej20gd07075h.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/853158adgy1gisxtpwbshj20gw06ign3.jpg">
 <meta property="article:published_time" content="2020-08-31T15:12:37.000Z">
-<meta property="article:modified_time" content="2020-09-16T17:20:22.749Z">
+<meta property="article:modified_time" content="2020-09-16T17:33:49.833Z">
 <meta property="article:author" content="个人">
 <meta property="article:tag" content="Unity">
 <meta name="twitter:card" content="summary">
@@ -222,7 +222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-17 01:20:22" itemprop="dateModified" datetime="2020-09-17T01:20:22+08:00">2020-09-17</time>
+                <time title="修改时间：2020-09-17 01:33:49" itemprop="dateModified" datetime="2020-09-17T01:33:49+08:00">2020-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,7 +461,7 @@ frag没有任何输入，SV_Target将输入的颜色信息储存在默认帧缓�
 <li>高光反射(specular)：反射光线。</li>
 <li>漫反射(diffuse)：表示有多少光被折射、吸收、反射出表面。</li>
 </ul>
-<p>根据入射光线的数量和方向可以算出出射光线的数量和方向，用出射度(exitance)来描述。<br>辐照度和出射度是线性关系，而他们的比值就是材质的漫反射属性和高光反射属性。（不明白）</p>
+<p>根据入射光线的数量和方向可以算出出射光线的数量和方向，用出射度(exitance)来描述。<br>辐照度和出射度是线性关系，而他们的比值就是材质的漫反射属性和高光反射属性。<sup><a href="#fn_不理解" id="reffn_不理解">不理解</a></sup></p>
 <h4 id="BRDF光照模型"><a href="#BRDF光照模型" class="headerlink" title="BRDF光照模型"></a>BRDF光照模型</h4><p>当给定物体表面一个点时，BRDF包含了对这个点的外观的完整描述。大多数用一个数学公式表示，并提供一些参数修改材质属性。通俗讲就是可以给出在某个出射方向上的光照能量分布。本章都是简化的标准模型。<br><em>谨记：图形学第一定律，如果它看起来是对的，那么它就是对的。</em></p>
 <h3 id="标准光照模型"><a href="#标准光照模型" class="headerlink" title="标准光照模型"></a>标准光照模型</h3><p>基本理念：直接光照，就是光照射物体后直接反射一次到摄像机中。<br>把进入摄像机的光线分为四类：</p>
 <ul>
@@ -469,7 +469,6 @@ frag没有任何输入，SV_Target将输入的颜色信息储存在默认帧缓�
 <li><strong>高光反射</strong>（specular）：$c_{specular}$ 完全反射光线。</li>
 <li><strong>漫反射</strong>（diffuse）：$c_{diffuse}$ 向每个方向散射。</li>
 <li><strong>环境光</strong>（ambient）：$c_{ambient}$ 用来描述间接照明。</li>
-<li>。dsd</li>
 </ul>
 
     </div>
