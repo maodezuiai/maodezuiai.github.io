@@ -178,10 +178,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-10-14 00:33:37 / 修改时间：00:49:38" itemprop="dateCreated datePublished" datetime="2020-10-14T00:33:37+08:00">2020-10-14</time>
+              <time title="创建时间：2020-10-14 00:33:37" itemprop="dateCreated datePublished" datetime="2020-10-14T00:33:37+08:00">2020-10-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-26 00:03:40" itemprop="dateModified" datetime="2020-10-26T00:03:40+08:00">2020-10-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -220,10 +226,17 @@
 </li>
 <li><p>_WorldSpaceCameraPos.xyz：计算相机位置。</p>
 </li>
+<li>ObjSpaceViewDir(float4 v)仅可用于前向渲染中。输入一个模型空间中的顶点位置，返回模型空间中从该点到摄像机的观察方向。</li>
 <li>_WorldSpaceLightPos0.xyz:光源方向（位置）。</li>
+<li><p>ObjSpaceLightDir(float4 v)仅可用于前向渲染中。输入一个模型空间中的顶点位置，返回模型空间中从该点到光源的光照方向。</p>
+</li>
 <li><p>_LightColor0.rgb：得到该Pass的光源颜色和强度信息。</p>
 </li>
 <li><p>unity_WorldToObject：转换空间坐标，注意左乘右乘的区别。</p>
+</li>
+<li><p>sampler2D 采样2D纹理。</p>
+</li>
+<li><p>tangent后跟.xyz  不知道原因</p>
 </li>
 </ul>
 
